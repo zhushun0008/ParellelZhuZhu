@@ -1,8 +1,9 @@
-clear all;
-nchannels = 8;
+clear all; clear; clc
+nchannels = 4;
 reduc = 4;
 Reduce_factor_6_option = 1;
-load rawdata_GE_brain
+load rawdata_full
+raw_data = rawdata_full;
 
 % if Reduce_factor_6_option == 1
 %     load GE_human_brain
