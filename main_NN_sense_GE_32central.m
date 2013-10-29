@@ -1,8 +1,8 @@
 clear all; clear; clc
 nchannels = 4;
-reduc = 4;
+reduc = 2;
 Reduce_factor_6_option = 1;
-load rawdata_full
+load rawdata_full;
 raw_data = rawdata_full;
 
 % if Reduce_factor_6_option == 1
@@ -85,8 +85,12 @@ Img_Recon_final = sqrt(Img_Recon_final);
     XY1=cat(3,Y(:),X(:));
     XY2=squeeze(permute(XY1,[3,2,1]));
     in_NN=[in_NN4;XY2];
+    inputSize = 10;
+    hiddenSize1 = 98;
+    hiddenSize2 = 98;
     out_NN=(Img_Recon_final(:)).';
-    tic
+    [SparseAuencoderStack] = twoSparseAutoencoder(in_NN,inputSize,hiddenSize1,hiddenSize2);
+	tic
     net = newff(in_NN,out_NN,98);
 %     ,'radbas','traincgf'
      net.trainParam.epochs = 1000;
